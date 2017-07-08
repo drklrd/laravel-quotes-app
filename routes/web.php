@@ -28,3 +28,14 @@ Route::get('/hi',function(){
 Route::get('/hello',function(){
 	return view('actions.hello');
 })->name('hello');
+
+Route::post('/formsubmit',function(\Illuminate\Http\Request $request){
+	if (isset($request['action']) && $request['name']){
+		if(strlen($request['name']) > 0){
+			return view('actions.nice',['action' => $request['action'],'name'=> $request['name']]);
+		}
+		return redirect()->back();
+	}
+	return redirect()->back();
+
+})->name('formsubmit');
