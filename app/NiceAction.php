@@ -8,3 +8,5 @@ class NiceAction extends Model
 {
     //
 }
+
+

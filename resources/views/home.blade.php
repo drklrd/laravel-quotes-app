@@ -2,12 +2,12 @@
 
 @section('content')
 	<div class="centered">
-		<a href="{{ route('niceaction',['action'=>'greet']) }}">Greet</a>
-		<a href="{{ route('niceaction',['action'=>'hi']) }}">Hi</a>
-		<a href="{{ route('niceaction',['action'=>'hello']) }}">Hello</a>
+		@foreach($actions as $action)
+			<a href=" {{ route('niceaction',['action'=>lcfirst($action->name)]) }} "> {{ $action->name }} </a>
+		@endforeach
 		<br>
 		@if (count($errors) > 0)
-			<div>
+			<div> 
 				<ul>
 					@foreach($errors->all() as $error)
 						{{ $error }}
