@@ -12,5 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/greet/{name?}',function($name = null){
+	return view('actions.greet',['name' => $name]);
+})->name('greet');
+
+
+Route::get('/hi',function(){
+	return view('actions.hi');
+})->name('hi');
+
+
+Route::get('/hello',function(){
+	return view('actions.hello');
+})->name('hello');
