@@ -13,32 +13,17 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::group(['prefix' => 'do'],function(){
-	Route::get('/greet/{name?}',function($name = null){
-		return view('actions.greet',['name' => $name]);
-	})->name('greet');
+	Route::get('/{action}/{name?}',[
+		'uses' => 'NiceActionController@getNiceAction',
+		'as' => 'niceaction'
+	]);
 
-
-	Route::get('/hi',function(){
-		return view('actions.hi');
-	})->name('hi');
-
-
-	Route::get('/hello',function(){
-		return view('actions.hello');
-	})->name('hello');
-
-	Route::post('/',function(\Illuminate\Http\Request $request){
-		if (isset($request['action']) && $request['name']){
-			if(strlen($request['name']) > 0){
-				return view('actions.nice',['action' => $request['action'],'name'=> $request['name']]);
-			}
-			return redirect()->back();
-		}
-		return redirect()->back();
-
-	})->name('formsubmit');
+	Route::post('/',[
+		'uses' => 'NiceActionController@postNiceAction',
+		'as' => 'formsubmit'
+	]);
 });
 

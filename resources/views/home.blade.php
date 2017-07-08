@@ -2,9 +2,9 @@
 
 @section('content')
 	<div class="centered">
-		<a href="{{ route('greet') }}">Greet</a>
-		<a href="{{ route('hi') }}">Hi</a>
-		<a href="{{ route('hello') }}">Hello</a>
+		<a href="{{ route('niceaction',['action'=>'greet']) }}">Greet</a>
+		<a href="{{ route('niceaction',['action'=>'hi']) }}">Hi</a>
+		<a href="{{ route('niceaction',['action'=>'hello']) }}">Hello</a>
 		<br>
 		<form action="{{ route('formsubmit') }}" method="post">
 			<label for="select-action">I want to </label>
