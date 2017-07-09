@@ -21,9 +21,12 @@ class NiceActionController extends Controller
 		// 	$query->where('name','=','Greet');
 		// })->get();
 		$query = DB::table('nice_action_logs')
-					->join('nice_actions','nice_action_logs.nice_action_id','=','nice_actions.id')
-					->where('nice_actions.name','=','Greet')
-					->get();
+					->insertGetId([
+						'nice_action_id' => DB::table('nice_actions')->select('id')->where('name','Greet')->first()->id
+					]);
+
+
+
 		return view('home',['actions'=>$actions,'logged_actions'=> $logged_actions,'db'=>$query]);
 	}
 
