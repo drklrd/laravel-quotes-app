@@ -36,4 +36,21 @@ class NiceActionController extends Controller
 		$prefix = "Master ";
 		return $prefix . strtoupper($name);
 	}
+
+	public function postInsertNiceAction(Request $request){
+
+		$this->validate($request,[
+			'name' => 'required|alpha|unique:nice_actions',
+			'niceness' => 'required|numeric'
+		]);
+
+		$action = new NiceAction();
+		$action->name = ucfirst(strtolower($request['name']));
+		$action->niceness = $request['niceness'] ;
+		$action->save(); 
+		$actions = NiceAction::all();
+
+		return redirect()->route('home');
+
+	}
 }

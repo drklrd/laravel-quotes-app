@@ -26,9 +26,9 @@ Route::group(['middleware' => ['web']],function(){
 			'as' => 'niceaction'
 		]);
 
-		Route::post('/',[
-			'uses' => 'NiceActionController@postNiceAction',
-			'as' => 'formsubmit'
+		Route::post('/add_action',[
+			'uses' => 'NiceActionController@postInsertNiceAction',
+			'as' => 'add_action'
 		]);
 	});
 });

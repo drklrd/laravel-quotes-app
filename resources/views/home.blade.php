@@ -15,14 +15,11 @@
 				</ul>
 			</div>
 		@endif
-		<form action="{{ route('formsubmit') }}" method="post">
-			<label for="select-action">I want to </label>
-			<select name="action" id="select-action">
-				<option value="greet">Greet</option>
-				<option value="hi">Hi</option> 
-				<option value="hello">Hello</option>
-			</select>
-			<input type="text" name="name">
+		<form action="{{ route('add_action') }}" method="post">
+			<label for="name"> Name of action : </label>
+			<input type="text" name="name" id="name">
+			<label for="niceness"> Niceness : </label>
+			<input type="text" name="niceness" id="niceness">
 			<button type="submit"> Great !</button>
 			<input type="hidden" value="{{ Session::token() }}" name="_token">
 		</form>
