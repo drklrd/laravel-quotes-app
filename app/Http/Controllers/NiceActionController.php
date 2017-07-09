@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use \Illuminate\Http\Request;
 use App\NiceAction;
+use App\NiceActionLog;
 
 
 
@@ -13,12 +14,16 @@ class NiceActionController extends Controller
 	public function getHome()
 	{
 		$actions = NiceAction::all();
-		return view('home',['actions'=>$actions]);
+		$logged_actions = NiceActionLog::all();
+		return view('home',['actions'=>$actions,'logged_actions'=> $logged_actions]);
 	}
 
 
 	public function getNiceAction($action , $name = null)
 	{
+		$nice_action = NiceAction::where('name',$action)->first();
+		$nice_actions_log = new NiceActionLog();
+		$nice_action->logged_actions()->save($nice_actions_log);
 		return view('actions.nice', [ 'action'=> $action ,'name' => $name === null ? 'you' : $name ]);
 	}
 
