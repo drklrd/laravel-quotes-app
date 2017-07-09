@@ -14,10 +14,15 @@ class NiceActionController extends Controller
 	public function getHome()
 	{
 		// $actions = NiceAction::all();
-		$actions = DB::table('nice_actions')->get();
+		// $actions = DB::table('nice_actions')->get();
+		$actions = NiceAction::orderBy('niceness','desc')->get();
 		$logged_actions = NiceActionLog::all();
+		// $logged_actions = NiceActionLog::whereHas('nice_action',function($query){
+		// 	$query->where('name','=','Greet');
+		// })->get();
 		$query = DB::table('nice_action_logs')
 					->join('nice_actions','nice_action_logs.nice_action_id','=','nice_actions.id')
+					->where('nice_actions.name','=','Greet')
 					->get();
 		return view('home',['actions'=>$actions,'logged_actions'=> $logged_actions,'db'=>$query]);
 	}
