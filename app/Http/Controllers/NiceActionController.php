@@ -16,18 +16,8 @@ class NiceActionController extends Controller
 		// $actions = NiceAction::all();
 		// $actions = DB::table('nice_actions')->get();
 		$actions = NiceAction::orderBy('niceness','desc')->get();
-		$logged_actions = NiceActionLog::all();
-		// $logged_actions = NiceActionLog::whereHas('nice_action',function($query){
-		// 	$query->where('name','=','Greet');
-		// })->get();
-		$query = DB::table('nice_action_logs')
-					->insertGetId([
-						'nice_action_id' => DB::table('nice_actions')->select('id')->where('name','Greet')->first()->id
-					]);
-
-
-
-		return view('home',['actions'=>$actions,'logged_actions'=> $logged_actions,'db'=>$query]);
+		$logged_actions = NiceActionLog::paginate(5);
+		return view('home',['actions'=>$actions,'logged_actions'=> $logged_actions]);
 	}
 
 

@@ -34,7 +34,6 @@
 				</li>
 			@endforeach
 		</ul>
-
-		{{ dd($db) }}
+		{!!  $logged_actions->links() !!}
 	</div>
 @endsection
