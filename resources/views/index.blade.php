@@ -14,14 +14,18 @@
 @section('content')
 	<section class="quotes">
 		<h1> Latest Quotes </h1>
-		<article class="quote">
-			<div class="delete">
-				<a href="#">x</a>
-			</div>
-			Quote Text
-			<div class="info">Created by <a href="#"> Saurav </a> on 2017</div>
-		</article>
-		Pagination
+		@for($i=0; $i<count($quotes);$i++)
+			<article class="quote">
+				<div class="delete">
+					<a href="#">x</a>
+				</div>
+				{{ $quotes[$i]->quote }}
+				<div class="info">Created by <a href="#"> {{ $quotes[$i]->author->name }} </a> on {{$quotes[$i]->author->created_at}} </div>
+			</article>
+		@endfor
+		<div class="pagination">
+			Pagination
+		</div>
 	</section>
 
 	<section class="edit-quote">
