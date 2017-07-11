@@ -30,4 +30,9 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'delete'
 	]);
 
+	Route::get('/gotemail/{author_name}',[
+		'uses' => 'QuoteController@getMailCallback',
+		'as' => 'mail_callback'
+	]);
+
 });

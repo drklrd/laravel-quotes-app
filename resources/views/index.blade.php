@@ -73,7 +73,7 @@
 				<input type="text" name="email" id="email" placeholder="Your email"> </input>
 			</div>
 			<div class="input-group">
-				<label for="quote">Your name</label>
+				<label for="quote">Your quote</label>
 				<textarea name="quote" id="quote" placeholder="Your quote"> </textarea>
 			</div>
 			<button type="submit" class="btn">Submit Quote</button>
