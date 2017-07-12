@@ -56,4 +56,8 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'admin.logout'
 	]);
 
+	Route::get('/admin/quotes',function(){
+		return view('admin.quotes');
+	})->middleware('auth');
+
 });
