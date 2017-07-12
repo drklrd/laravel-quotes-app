@@ -45,9 +45,14 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'admin.login'
 	]);
 
-	Route::get('/admin/login',[
+	Route::get('/admin/dashboard',[
 		'uses' => 'AdminController@getDashboard',
 		'as' => 'admin.dashboard'
+	]);
+
+	Route::get('/admin/logout',[
+		'uses' => 'AdminController@getLogout',
+		'as' => 'admin.logout'
 	]);
 
 });
